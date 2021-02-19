@@ -3,7 +3,7 @@ The utility functions for Sitecore PowerShell.
 
 ## Usage
 1. Download the package from [here](https://github.com/xirtardauq/SPE-Extended-Functions/releases) and install it.
-1. Declare `Import-Function SpeExtendedFunctions` in the top of you script.
+1. Declare `Import-Function SpeExtendedFunctions` in the top of your script.
 1. Now you can use the additional functions.
 
 ## Functions
@@ -127,3 +127,9 @@ Switch-Database "sitecore\Author" {
     [Sitecore.Context]::User.Name # => Returns "sitecore\Author"
 }
 ```
+
+## Author
+- Takumi Yamada (xirtardauq@gmail.com)
+
+## License
+*Cairngorm* is licensed under the MIT license. See LICENSE.txt.
