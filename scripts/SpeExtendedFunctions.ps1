@@ -1,0 +1,12 @@
+Import-Function Disable-Security
+Import-Function Edit-Item
+Import-Function Get-ItemOrAdd
+Import-Function Get-MediaContent
+Import-Function Get-SitecoreService
+Import-Function Set-FinalWorkflow
+Import-Function Set-InitialWorkflow
+Import-Function Set-MediaContent
+Import-Function Switch-Database
+Import-Function Switch-Language
+Import-Function Switch-Site
+Import-Function Switch-User
