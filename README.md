@@ -70,7 +70,7 @@ Assign a initial workflow to a specified item.
 ```powershell
 $item = Get-Item "/sitecore/content/Home"
 
-Set-FinalWorkflow -Item $item # => Assigned the Draft state.
+Set-InitialWorkflow -Item $item # => Assigned the Draft state.
 ```
 
 ### Set-MediaContent
@@ -101,7 +101,7 @@ Apply the `LanguageSwitcher` in the specified script block.
 ```powershell
 [Sitecore.Context]::Language.Name # => Returns "en"
 
-Switch-Database "ja-JP" {
+Switch-Language "ja-JP" {
     [Sitecore.Context]::Language.Name # => Returns "ja-JP"
 }
 ```
@@ -112,7 +112,7 @@ Apply the `SiteContextSwitcher` in the specified script block.
 ```powershell
 [Sitecore.Context]::Site.Name # => Returns "shell"
 
-Switch-Database "website" {
+Switch-Site "website" {
     [Sitecore.Context]::Site.Name # => Returns "website"
 }
 ```
@@ -123,7 +123,7 @@ Apply the `UserSwitcher` in the specified script block.
 ```powershell
 [Sitecore.Context]::User.Name # => Returns "sitecore\Admin"
 
-Switch-Database "sitecore\Author" {
+Switch-User "sitecore\Author" {
     [Sitecore.Context]::User.Name # => Returns "sitecore\Author"
 }
 ```
