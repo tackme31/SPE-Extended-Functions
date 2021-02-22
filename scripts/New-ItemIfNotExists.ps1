@@ -1,4 +1,4 @@
-function Get-ItemOrAdd {
+function New-ItemIfNotExists {
     param (
         [Parameter(Mandatory=$true)][string]$Path,
         [Parameter(Mandatory=$true)][Sitecore.Data.ID]$TemplateID

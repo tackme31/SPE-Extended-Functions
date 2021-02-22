@@ -1,4 +1,5 @@
 function Disable-Security {
+    [alias("sudo")]
     param (
         [Parameter(Mandatory=$true)][ScriptBlock]$Script
     )
@@ -11,5 +12,3 @@ function Disable-Security {
         $disabler.Dispose()
     }
 }
-
-Set-Alias -Name sudo -Value Disable-Security -Option None
