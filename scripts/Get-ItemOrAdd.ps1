@@ -15,6 +15,6 @@ function Get-ItemOrAdd {
     
     $parentItem = Get-Item $parentPath
     $itemName = $Path -replace "^.+/",""
-    $template = New-Object TemplateID($TemplateID)
+    $template = New-Object Sitecore.Data.TemplateID($TemplateID)
     return $parentItem.Add($itemName, $template)
 }

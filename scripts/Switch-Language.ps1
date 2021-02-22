@@ -1,13 +1,13 @@
 function Switch-Language {
     param (
-        [Parameter(Mandatory=$true)][string]$LanguageName,
-        [Parameter(Mandatory=$true)][ScriptBlock]$Block
+        [Parameter(Mandatory=$true)][string]$Name,
+        [Parameter(Mandatory=$true)][ScriptBlock]$Script
     )
 
-    $language = [Sitecore.Globalization.Language]::Parse($LanguageName)
+    $language = [Sitecore.Globalization.Language]::Parse($Name)
     $switcher = New-Object Sitecore.Globalization.LanguageSwitcher($language)
     try {
-        & $Block
+        & $Script
     }
     finally {
         $switcher.Dispose()

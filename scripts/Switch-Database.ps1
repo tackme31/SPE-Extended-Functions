@@ -1,13 +1,13 @@
 function Switch-Database {
     param (
-        [Parameter(Mandatory=$true)][string]$DatabaseName,
-        [Parameter(Mandatory=$true)][ScriptBlock]$Block
+        [Parameter(Mandatory=$true)][string]$Name,
+        [Parameter(Mandatory=$true)][ScriptBlock]$Script
     )
 
-    $database = [Sitecore.Data.Database]::GetDatabase($DatabaseName)
+    $database = [Sitecore.Data.Database]::GetDatabase($Name)
     $switcher = New-Object Sitecore.Data.DatabaseSwitcher($database)
     try {
-        & $Block
+        & $Script
     }
     finally {
         $switcher.Dispose()

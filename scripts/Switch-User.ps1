@@ -1,12 +1,12 @@
 function Switch-User {
     param (
-        [Parameter(Mandatory=$true)][string]$UserName,
-        [Parameter(Mandatory=$true)][ScriptBlock]$Block
+        [Parameter(Mandatory=$true)][string]$Name,
+        [Parameter(Mandatory=$true)][ScriptBlock]$Script
     )
 
-    $switcher = New-Object Sitecore.Security.Accounts.UserSwitcher($UserName, $true)
+    $switcher = New-Object Sitecore.Security.Accounts.UserSwitcher($Name, $true)
     try {
-        & $Block
+        & $Script
     }
     finally {
         $switcher.Dispose()

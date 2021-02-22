@@ -6,6 +6,7 @@ Import-Function Get-SitecoreService
 Import-Function Set-FinalWorkflow
 Import-Function Set-InitialWorkflow
 Import-Function Set-MediaContent
+Import-Function Switch-Context
 Import-Function Switch-Database
 Import-Function Switch-Language
 Import-Function Switch-Site

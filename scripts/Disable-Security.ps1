@@ -1,11 +1,11 @@
 function Disable-Security {
     param (
-        [Parameter(Mandatory=$true)][ScriptBlock]$Block
+        [Parameter(Mandatory=$true)][ScriptBlock]$Script
     )
     
     $disabler = New-Object Sitecore.SecurityModel.SecurityDisabler
     try {
-        & $Block
+        & $Script
     }
     finally {
         $disabler.Dispose()

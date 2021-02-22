@@ -1,12 +1,12 @@
 function Edit-Item {
     param (
         [Parameter(Mandatory=$true)][Sitecore.Data.Items.Item]$Item,
-        [Parameter(Mandatory=$true)][ScriptBlock]$Block
+        [Parameter(Mandatory=$true)][ScriptBlock]$Script
     )
     
     try {
         $Item.Editing.BeginEdit()
-        & $Block
+        & $Script
         $Item.Editing.EndEdit()
     }
     catch {

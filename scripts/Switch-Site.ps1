@@ -1,13 +1,13 @@
 function Switch-Site {
     param (
-        [Parameter(Mandatory=$true)][string]$SiteName,
-        [Parameter(Mandatory=$true)][ScriptBlock]$Block
+        [Parameter(Mandatory=$true)][string]$Name,
+        [Parameter(Mandatory=$true)][ScriptBlock]$Script
     )
 
-    $site = [Sitecore.Sites.SiteContext]::GetSite($SiteName)
+    $site = [Sitecore.Sites.SiteContext]::GetSite($Name)
     $switcher = New-Object Sitecore.Sites.SiteContextSwitcher($site)
     try {
-        & $Block
+        & $Script
     }
     finally {
         $switcher.Dispose()

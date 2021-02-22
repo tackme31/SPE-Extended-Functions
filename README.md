@@ -7,8 +7,23 @@ The utility functions for Sitecore PowerShell.
 1. Now you can use the additional functions.
 
 ## Functions
+
+- [Disable-Security](#user-content-disable-security-alias-sudo)
+- [Edit-Item](#user-content-edit-item-alias-edit)
+- [Get-ItemOrAdd](#user-content-get-itemoradd)
+- [Get-MediaContent](#user-content-get-mediacontent)
+- [Get-SitecoreService](#user-content-get-sitecoreservice-alias-di)
+- [Set-FinalWorkflow](#user-content-set-finalworkflow)
+- [Set-InitialWorkflow](#user-content-set-initialworkflow)
+- [Set-MediaContent](#user-content-set-mediacontent)
+- [Switch-Context](#user-content-switch-context)
+- [Switch-Database](#user-content-switch-database)
+- [Switch-Language](#user-content-switch-language)
+- [Switch-Site](#user-content-switch-site)
+- [Switch-User](#user-content-switch-user)
+
 ### Disable-Security (Alias: sudo)
-Apply the `SecurityDisabler` in the specified script block.
+Apply the `SecurityDisabler` in a specified script block.
 
 ```powershell
 Disable-Security {
@@ -17,7 +32,7 @@ Disable-Security {
 ```
 
 ### Edit-Item (Alias: edit)
-Allow item editing in the specified script block.
+Allow item editing in a specified script block.
 
 ```powershell
 $item = Get-Item "/sitecore/content/Home"
@@ -84,8 +99,28 @@ Set-MediaContent -Item $media -Content "New Content"
 Get-MediaContent -Item $media # => Returns "New Content"
 ```
 
+### Switch-Context
+Switch Site/Database/Language/User context in a specified block. When `-NoSecurity` is passed, apply the `SecurityDisabler`.
+
+```powershell
+$context = @{
+    Database = "web"
+    Language = "ja-JP"
+    Site = "website"
+    User = "sitecore\Author"
+    NoSecurity = $true
+}
+
+Switch-Context @context -Script {
+    [Sitecore.Context]::Database.Name # => Returns "web"
+    [Sitecore.Context]::Language.Name # => Returns "ja-JP"
+    [Sitecore.Context]::Site.Name     # => Returns "website"
+    [Sitecore.Context]::User.Name     # => Returns "sitecore\Author"
+}
+```
+
 ### Switch-Database
-Apply the `DatabaseSwitcher` in the specified script block.
+Apply the `DatabaseSwitcher` in a specified script block.
 
 ```powershell
 [Sitecore.Context]::Database.Name # => Returns "master"
@@ -96,7 +131,7 @@ Switch-Database "web" {
 ```
 
 ### Switch-Language
-Apply the `LanguageSwitcher` in the specified script block.
+Apply the `LanguageSwitcher` in a specified script block.
 
 ```powershell
 [Sitecore.Context]::Language.Name # => Returns "en"
@@ -107,7 +142,7 @@ Switch-Language "ja-JP" {
 ```
 
 ### Switch-Site
-Apply the `SiteContextSwitcher` in the specified script block.
+Apply the `SiteContextSwitcher` in a specified script block.
 
 ```powershell
 [Sitecore.Context]::Site.Name # => Returns "shell"
@@ -118,7 +153,7 @@ Switch-Site "website" {
 ```
 
 ### Switch-User
-Apply the `UserSwitcher` in the specified script block.
+Apply the `UserSwitcher` in a specified script block.
 
 ```powershell
 [Sitecore.Context]::User.Name # => Returns "sitecore\Admin"
