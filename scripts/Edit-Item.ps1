@@ -1,4 +1,5 @@
 function Edit-Item {
+    [alias("edit")]
     param (
         [Parameter(Mandatory=$true)][Sitecore.Data.Items.Item]$Item,
         [Parameter(Mandatory=$true)][ScriptBlock]$Script
@@ -13,5 +14,3 @@ function Edit-Item {
         $Item.Editing.CancelEdit()
     }
 }
-
-Set-Alias -Name edit -Value Edit-Item -Option None

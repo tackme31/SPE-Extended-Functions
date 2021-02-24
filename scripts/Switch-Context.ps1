@@ -1,4 +1,5 @@
 function Switch-Context {
+    [alias("sctx")]
     param (
         [Parameter(Mandatory=$false)][String]$Database,
         [Parameter(Mandatory=$false)][String]$Language,

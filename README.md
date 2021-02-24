@@ -10,13 +10,13 @@ The utility functions for Sitecore PowerShell.
 
 - [Disable-Security](#user-content-disable-security-alias-sudo)
 - [Edit-Item](#user-content-edit-item-alias-edit)
-- [Get-ItemOrAdd](#user-content-get-itemoradd)
 - [Get-MediaContent](#user-content-get-mediacontent)
-- [Get-SitecoreService](#user-content-get-sitecoreservice-alias-di)
+- [New-ItemIfNotExists](#user-content-new-itemifnotexists)
+- [Resolve-Instance](#user-content-resolve-instance)
 - [Set-FinalWorkflow](#user-content-set-finalworkflow)
 - [Set-InitialWorkflow](#user-content-set-initialworkflow)
 - [Set-MediaContent](#user-content-set-mediacontent)
-- [Switch-Context](#user-content-switch-context)
+- [Switch-Context](#user-content-switch-context-alias-sctx)
 - [Switch-Database](#user-content-switch-database)
 - [Switch-Language](#user-content-switch-language)
 - [Switch-Site](#user-content-switch-site)
@@ -44,15 +44,6 @@ Edit-Item $item {
 echo $item["Title"] # => Returns "New Title".
 ```
 
-### Get-ItemOrAdd
-Get an item by path if exist. When the item is not found, create the item with specified template.
-
-```powershell
-$template = Get-Item "/sitecore/templates/Sample/Sample Item"
-
-Get-ItemOrAdd -Path "/sitecore/content/Home/New Item" -TemplateID $template.ID
-```
-
 ### Get-MediaContent
 Get the `Media` field value of a media item as string.
 
@@ -62,11 +53,21 @@ $media = Get-Item "/sitecore/media library/My CSV file"
 Get-MediaContent -Item $media # => Returns the csv content attached to $media.
 ```
 
-### Get-SitecoreService (Alias: di)
-Resolve an instance from interface registered in service provider.
+### New-ItemIfNotExists
+If an item does not exist in a specified path, it will be created with a specified template. If the item exists, it will be returned.
 
 ```powershell
-Get-SitecoreService -Type ([Sitecore.XA.Foundation.Search.Services.IIndexResolver])
+$template = Get-Item "/sitecore/templates/Sample/Sample Item"
+
+New-ItemIfNotExists -Path "/sitecore/content/Home/New Item" -TemplateID $template.ID
+# => The item will always be returned.
+```
+
+### Resolve-Instance
+Resolve an instance by interface registered in the DI container.
+
+```powershell
+Resolve-Instance -TypeName Sitecore.XA.Foundation.Search.Services.IIndexResolver
 # => Returns an instance of the IndexResolver.
 ```
 
@@ -99,7 +100,7 @@ Set-MediaContent -Item $media -Content "New Content"
 Get-MediaContent -Item $media # => Returns "New Content"
 ```
 
-### Switch-Context
+### Switch-Context (Alias: sctx)
 Switch Site/Database/Language/User context in a specified block. When `-NoSecurity` is passed, apply the `SecurityDisabler`.
 
 ```powershell
